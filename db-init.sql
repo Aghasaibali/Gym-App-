@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS gymapp;
+CREATE USER IF NOT EXISTS "gymapp"@"localhost" IDENTIFIED BY "changeme";
+GRANT ALL PRIVILEGES ON gymapp.* TO "gymapp"@"localhost";
+FLUSH PRIVILEGES;

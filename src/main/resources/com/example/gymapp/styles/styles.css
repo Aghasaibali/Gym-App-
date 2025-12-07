@@ -1,0 +1,30 @@
+.root {
+    -fx-font-family: "Segoe UI", "Sans-Serif";
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.panel-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.login-container {
+    -fx-padding: 32;
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fa, #e4e7ed);
+}
+
+.panel {
+    -fx-padding: 20;
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 6);
+}
+
+.error-label {
+    -fx-text-fill: #d9534f;
+    -fx-font-size: 12px;
+}

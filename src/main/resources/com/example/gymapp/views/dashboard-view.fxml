@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.gymapp.controllers.DashboardController">
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <children>
+                <Label text="Gym Manager" styleClass="title-label"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Label text="Dashboard" styleClass="subtitle-label"/>
+                <Button text="Logout" onAction="#handleLogout"/>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane>
+            <tabs>
+                <Tab text="Members">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <TableView fx:id="memberTable" prefHeight="250">
+                                <columns>
+                                    <TableColumn fx:id="nameColumn" text="Name" prefWidth="150"/>
+                                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                                    <TableColumn fx:id="membershipColumn" text="Membership" prefWidth="150"/>
+                                </columns>
+                            </TableView>
+
+                            <TitledPane text="Add / Edit Member" expanded="true">
+                                <content>
+                                    <GridPane hgap="10" vgap="10">
+                                        <padding>
+                                            <Insets top="10" right="10" bottom="10" left="10"/>
+                                        </padding>
+                                        <columnConstraints>
+                                            <ColumnConstraints halignment="RIGHT"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <children>
+                                            <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                            <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                            <Label text="Membership:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                            <TextField fx:id="membershipField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                            <HBox spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                                <children>
+                                                    <Button text="Add Member" onAction="#handleAddMember"/>
+                                                    <Button text="Remove Selected" onAction="#handleRemoveMember"/>
+                                                </children>
+                                            </HBox>
+                                        </children>
+                                    </GridPane>
+                                </content>
+                            </TitledPane>
+                        </children>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Payments">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <TableView fx:id="paymentTable" prefHeight="220">
+                                <columns>
+                                    <TableColumn fx:id="payMemberColumn" text="Member" prefWidth="130"/>
+                                    <TableColumn fx:id="payAmountColumn" text="Amount" prefWidth="90"/>
+                                    <TableColumn fx:id="payStatusColumn" text="Status" prefWidth="90"/>
+                                    <TableColumn fx:id="payDateColumn" text="Date" prefWidth="120"/>
+                                    <TableColumn fx:id="payNoteColumn" text="Note" prefWidth="200"/>
+                                </columns>
+                            </TableView>
+                            <GridPane hgap="10" vgap="10">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Member" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                    <ComboBox fx:id="payMemberCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                    <Label text="Amount" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    <TextField fx:id="payAmountField" promptText="e.g. 49.99" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                    <Label text="Status" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                    <ChoiceBox fx:id="payStatusChoice" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                    <Label text="Date" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                    <DatePicker fx:id="payDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                                    <Label text="Note" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                    <TextField fx:id="payNoteField" promptText="optional" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                    <Button text="Add Payment" onAction="#handleAddPayment" GridPane.rowIndex="2" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                                </children>
+                            </GridPane>
+                        </children>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Attendance">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <TableView fx:id="attendanceTable" prefHeight="220">
+                                <columns>
+                                    <TableColumn fx:id="attMemberColumn" text="Member" prefWidth="150"/>
+                                    <TableColumn fx:id="attTypeColumn" text="Type" prefWidth="100"/>
+                                    <TableColumn fx:id="attTimeColumn" text="Time" prefWidth="180"/>
+                                </columns>
+                            </TableView>
+                            <GridPane hgap="10" vgap="10">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Member" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                    <ComboBox fx:id="attMemberCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                    <Label text="Type" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    <ChoiceBox fx:id="attTypeChoice" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                    <Button text="Add Record (Now)" onAction="#handleAddAttendance" GridPane.rowIndex="1" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                                </children>
+                            </GridPane>
+                        </children>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Progress &amp; Goals">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <TableView fx:id="progressTable" prefHeight="220">
+                                <columns>
+                                    <TableColumn fx:id="progMemberColumn" text="Member" prefWidth="140"/>
+                                    <TableColumn fx:id="progDateColumn" text="Date" prefWidth="120"/>
+                                    <TableColumn fx:id="progWeightColumn" text="Weight (kg)" prefWidth="100"/>
+                                    <TableColumn fx:id="progBodyFatColumn" text="Body Fat (%)" prefWidth="110"/>
+                                    <TableColumn fx:id="progNoteColumn" text="Note" prefWidth="200"/>
+                                </columns>
+                            </TableView>
+                            <GridPane hgap="10" vgap="10">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Member" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                    <ComboBox fx:id="progMemberCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                    <Label text="Date" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    <DatePicker fx:id="progDatePicker" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                    <Label text="Weight (kg)" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                    <TextField fx:id="progWeightField" promptText="e.g. 72.5" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                    <Label text="Body Fat (%)" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                    <TextField fx:id="progBodyFatField" promptText="e.g. 18" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                                    <Label text="Note" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                    <TextField fx:id="progNoteField" promptText="optional" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                    <Button text="Add Progress" onAction="#handleAddProgress" GridPane.rowIndex="2" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                                </children>
+                            </GridPane>
+                        </children>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Scheduling">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <TableView fx:id="classTable" prefHeight="220">
+                                <columns>
+                                    <TableColumn fx:id="classNameColumn" text="Class" prefWidth="140"/>
+                                    <TableColumn fx:id="classInstructorColumn" text="Instructor" prefWidth="120"/>
+                                    <TableColumn fx:id="classDateColumn" text="Date" prefWidth="120"/>
+                                    <TableColumn fx:id="classTimeColumn" text="Time" prefWidth="90"/>
+                                    <TableColumn fx:id="classCapacityColumn" text="Capacity" prefWidth="80"/>
+                                    <TableColumn fx:id="classEnrolledColumn" text="Enrolled" prefWidth="80"/>
+                                </columns>
+                            </TableView>
+                            <GridPane hgap="10" vgap="10">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Class" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                    <TextField fx:id="classNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                    <Label text="Instructor" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    <TextField fx:id="classInstructorField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                    <Label text="Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                    <DatePicker fx:id="classDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                    <Label text="Time" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                    <TextField fx:id="classTimeField" promptText="e.g. 18:00" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                                    <Label text="Capacity" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                    <TextField fx:id="classCapacityField" promptText="e.g. 20" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                    <Button text="Add Class" onAction="#handleAddClass" GridPane.rowIndex="2" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                                </children>
+                            </GridPane>
+                        </children>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Notifications">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <TableView fx:id="notificationTable" prefHeight="220">
+                                <columns>
+                                    <TableColumn fx:id="notifTypeColumn" text="Type" prefWidth="120"/>
+                                    <TableColumn fx:id="notifMessageColumn" text="Message" prefWidth="250"/>
+                                    <TableColumn fx:id="notifDateColumn" text="Date" prefWidth="120"/>
+                                    <TableColumn fx:id="notifStatusColumn" text="Status" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                            <GridPane hgap="10" vgap="10">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints halignment="RIGHT"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <children>
+                                    <Label text="Type" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                    <ChoiceBox fx:id="notifTypeChoice" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                    <Label text="Message" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    <TextField fx:id="notifMessageField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                    <Label text="Status" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                    <ChoiceBox fx:id="notifStatusChoice" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                    <Button text="Add Notification" onAction="#handleAddNotification" GridPane.rowIndex="1" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                                </children>
+                            </GridPane>
+                        </children>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Admin">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <children>
+                            <HBox spacing="10">
+                                <children>
+                                    <Label text="Current role:"/>
+                                    <Label fx:id="roleLabel" text="User" styleClass="subtitle-label"/>
+                                    <Label fx:id="userInfoLabel" text=""/>
+                                </children>
+                            </HBox>
+                            <HBox spacing="10">
+                                <children>
+                                    <Button fx:id="exportButton" text="Export Members (CSV)" onAction="#handleExportMembers"/>
+                                    <Button fx:id="seedButton" text="Seed Demo Data" onAction="#handleSeedDemoData"/>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

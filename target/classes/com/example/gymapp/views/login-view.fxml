@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.gymapp.controllers.LoginController">
+    <children>
+        <VBox spacing="24" alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" styleClass="login-container">
+            <Label text="Gym Manager" styleClass="title-label"/>
+            <HBox spacing="24" alignment="CENTER">
+                <VBox spacing="12" alignment="CENTER" styleClass="panel">
+                    <Label text="Login" styleClass="panel-title"/>
+                    <TextField fx:id="usernameField" promptText="Username" prefWidth="260"/>
+                    <PasswordField fx:id="passwordField" promptText="Password" prefWidth="260"/>
+                    <Button text="Login" onAction="#handleLogin" prefWidth="260"/>
+                    <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" prefWidth="260"/>
+                </VBox>
+                <VBox spacing="12" alignment="CENTER" styleClass="panel">
+                    <Label text="Register" styleClass="panel-title"/>
+                    <TextField fx:id="newUsernameField" promptText="Username" prefWidth="260"/>
+                    <TextField fx:id="registerEmailField" promptText="E-mail" prefWidth="260"/>
+                    <PasswordField fx:id="newPasswordField" promptText="Password" prefWidth="260"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" prefWidth="260"/>
+                    <Button text="Create Account" onAction="#handleRegister" prefWidth="260"/>
+                    <Label fx:id="registerStatusLabel" styleClass="error-label" wrapText="true" prefWidth="260"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
